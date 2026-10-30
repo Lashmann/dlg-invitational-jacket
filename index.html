@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DLG Invitational — Jacket Picks</title>
+<style>
+  :root { --ink:#1B2A41; --muted:#5d6675; --paper:#F4F1E8; --card:#FFFFFF; --line:#DDD6C4; --pick:#C9A227; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font:15px/1.5 -apple-system, "Helvetica Neue", Arial, sans-serif; }
+  .wrap { max-width:1180px; margin:0 auto; padding:28px 20px 60px; }
+  h1 { font:700 34px/1.1 Copperplate, Georgia, serif; letter-spacing:2px; margin:0 0 6px; }
+  h2 { font:700 20px/1.2 Copperplate, Georgia, serif; letter-spacing:1.5px; margin:34px 0 4px; }
+  .sub { color:var(--muted); margin:0 0 12px; }
+  .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .grid2 { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+  .card { background:var(--card); border:2px solid var(--line); border-radius:12px; padding:14px; cursor:pointer; transition:border-color .15s; }
+  .card:hover { border-color:#bfb59a; }
+  .card.on { border-color:var(--pick); box-shadow:0 0 0 3px rgba(201,162,39,.25); }
+  .swatch { background:#1B2A41; border-radius:8px; padding:18px; display:flex; align-items:center; justify-content:center; height:300px; }
+  .swatch svg { height:100%; width:auto; max-width:100%; }
+  .swatch.small { height:230px; }
+  .swatch.stripe { background:#1B2A41 repeating-linear-gradient(90deg, transparent 0 9px, rgba(230,232,236,.30) 9px 10px); }
+  .swatch.rib { height:auto; padding:8px 4px; margin-top:6px; } .swatch.rib svg { width:100%; height:auto; } h3.mini { font-size:15px; margin:18px 0 8px; }
+  .label { font-weight:700; margin-top:10px; } .note { color:var(--muted); font-size:13px; }
+  .mottos { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+  .motto .swatch { height:auto; padding:10px 6px; } .motto .swatch svg { width:100%; height:auto; }
+  .tag { display:inline-block; font-size:11px; font-weight:700; padding:1px 7px; border-radius:10px; margin-left:6px; vertical-align:2px; }
+  .tag.clean { background:#e3efe6; color:#2E6B3F; } .tag.spicy { background:#f7e1e1; color:#B3282D; } .tag.star { background:#f6edc9; color:#7a5f00; }
+  .jackets { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .jackets .card { cursor:default; } .jackets svg { width:100%; height:auto; display:block; }
+  .colours { display:flex; gap:8px; margin:8px 0 0; flex-wrap:wrap; }
+  .colours button { border:2px solid var(--line); background:#fff; border-radius:20px; padding:5px 12px; cursor:pointer; font:inherit; }
+  .colours button.on { border-color:var(--pick); }
+  .dot { display:inline-block; width:12px; height:12px; border-radius:50%; vertical-align:-1px; margin-right:6px; border:1px solid #0003; }
+  table { width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+  th, td { text-align:left; vertical-align:top; padding:9px 12px; border-bottom:1px solid var(--line); }
+  th { width:200px; background:#faf8f2; font-weight:700; }
+  .printbar { margin:18px 0 0; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+  .printbar button { background:var(--ink); color:#fff; border:0; border-radius:8px; padding:10px 16px; font:inherit; font-weight:700; cursor:pointer; }
+  .ask { background:#fff8e1; border:1px solid #ecd98a; border-radius:10px; padding:12px 16px; margin-top:18px; }
+  @media (max-width:1100px) { .grid4 { grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:900px) { .grid4,.grid3, .mottos, .jackets, .grid2 { grid-template-columns:1fr; } }
+  @media print {
+    body { background:#fff; font-size:11px; } .wrap { padding:0; max-width:none; }
+    .pickers, .printbar, .ask, .screen-only { display:none !important; }
+    .jackets { grid-template-columns:1fr 1fr; } .card { border:1px solid #ccc; padding:8px; }
+    h1 { font-size:22px; } h2 { margin-top:12px; font-size:15px; }
+    @page { size:A4; margin:12mm; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>DLG Invitational — the jacket</h1>
+  <p class="sub">One jacket, passed from winner to winner — like the green jacket at the Masters. A few things are still open. Tap the options below; the jacket at the bottom changes as you tap. Then copy your picks and send them to Lachlan.</p>
+  <div class="ask" style="margin-top:6px">
+    <b>Already decided</b>
+    <ul style="margin:6px 0 0 18px; padding:0">
+      <li>The jacket: <b>navy with a pinstripe</b>.</li>
+      <li>Front: the <b>club crest</b> on the left chest — DLG, with INVITATIONAL right across underneath.</li>
+      <li>Back: the banner <b>"GOOD MATES · VITA BREVIS · BAD GOLF"</b> across the top (vita brevis = "life is short"), then the <b>roll of honour</b>.</li>
+      <li>The roll of honour starts with <b>2026 · Mission Hills</b>. The winner's name is stitched on after the comp, and a new line goes on every year.</li>
+    </ul>
+  </div>
+
+  <div class="pickers">
+    <h2>Still to decide</h2>
+    <p class="sub">The crest is about 10 cm wide on the chest, so tiny words don't stitch well — that's flagged where it matters.</p>
+    <div id="emblems" hidden=""><div class="card on" data-e="A">
+    <div class="swatch"><svg viewBox="0 0 300 360" xmlns="http://www.w3.org/2000/svg">
+  <g stroke-linecap="round">
+    <line x1="70" y1="44" x2="226" y2="262" stroke="#FFFFFF" stroke-width="7"></line>
+    <line x1="230" y1="44" x2="74" y2="262" stroke="#FFFFFF" stroke-width="7"></line>
+    <line x1="70" y1="44" x2="86" y2="66" stroke="#C9A227" stroke-width="12"></line>
+    <line x1="230" y1="44" x2="214" y2="66" stroke="#C9A227" stroke-width="12"></line>
+  </g>
+  <path d="M220,256 L252,264 L248,280 L216,272 Z" fill="#C9A227"></path>
+  <path d="M80,256 L48,264 L52,280 L84,272 Z" fill="#C9A227"></path>
+  <path d="M80,62 H220 V170 C220,232 186,268 150,286 C114,268 80,232 80,170 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="7" stroke-linejoin="round"></path>
+  <path d="M150.0,23.0L152.9,30.0L160.5,30.6L154.7,35.5L156.5,42.9L150.0,39.0L143.5,42.9L145.3,35.5L139.5,30.6L147.1,30.0Z" fill="#C9A227"></path>
+  <text x="134" y="40" text-anchor="end" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="16" letter-spacing="2" fill="#C9A227">EST</text><text x="166" y="40" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="16" letter-spacing="2" fill="#C9A227">2026</text>
+  
+  <text class="dlg" x="150" y="144" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="54" fill="#C9A227">DLG</text>
+  <text class="fit" x="150" y="169" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="14" textLength="112" lengthAdjust="spacing" fill="#FFFFFF">INVITATIONAL</text>
+  <circle cx="150" cy="192" r="10" fill="#FFFFFF"></circle>
+  <path d="M143,203 H157 L152,209 V226 H148 V209 Z" fill="#C9A227"></path>
+  <path d="M40,304 L8,312 L22,326 L8,342 L40,336 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M260,304 L292,312 L278,326 L292,342 L260,336 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M36,300 Q150,330 264,300 L264,336 Q150,366 36,336 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p1" d="M46,326 Q150,356 254,326" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="10.5" font-weight="700" textLength="204" lengthAdjust="spacingAndGlyphs" fill="#C9A227"><textPath href="#p1" startOffset="50%" text-anchor="middle">GOOD MATES · VITA BREVIS · BAD GOLF</textPath></text>
+</svg></div><div class="label">A · The club crest</div><div class="note">The proper golf-club look — shield, crossed clubs. Now with INVITATIONAL right across under DLG.</div><div class="note"><b>Threads:</b> Gold · White (the shield and ribbon are navy, the same as the jacket)</div></div><div class="card " data-e="B">
+    <div class="swatch"><svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="150" cy="150" r="146" fill="#C9A227"></circle>
+  <circle cx="150" cy="150" r="140" fill="#B3282D"></circle>
+  <circle cx="150" cy="150" r="100" fill="#1B2A41" stroke="#C9A227" stroke-width="4"></circle>
+  <path id="p2" d="M38,150 A112,112 0 0 1 262,150" fill="none"></path>
+  <path id="p3" d="M22,150 A128,128 0 0 0 278,150" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="19" letter-spacing="2" fill="#FFFFFF"><textPath href="#p2" startOffset="50%" text-anchor="middle">THE INVITATIONAL</textPath></text>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="18" letter-spacing="2" fill="#FFFFFF"><textPath href="#p3" startOffset="50%" text-anchor="middle">MISSION HILLS · 2026</textPath></text>
+  <path d="M30.0,141.0L32.4,146.7L38.6,147.2L33.9,151.3L35.3,157.3L30.0,154.1L24.7,157.3L26.1,151.3L21.4,147.2L27.6,146.7Z" fill="#C9A227"></path><path d="M270.0,141.0L272.4,146.7L278.6,147.2L273.9,151.3L275.3,157.3L270.0,154.1L264.7,157.3L266.1,151.3L261.4,147.2L267.6,146.7Z" fill="#C9A227"></path>
+  <line x1="150" y1="66" x2="150" y2="112" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"></line>
+  <path d="M152,66 L178,74 L152,82 Z" fill="#C9A227"></path>
+  <text x="150" y="172" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="60" letter-spacing="2" fill="#FFFFFF">DLG</text>
+  <line x1="108" y1="190" x2="192" y2="190" stroke="#C9A227" stroke-width="3"></line>
+  <circle cx="150" cy="210" r="8" fill="#FFFFFF"></circle>
+</svg></div><div class="label">B · The roundel</div><div class="note">A round badge with the name in the ring. The easiest of the three to stitch cleanly, and it works at any size.</div><div class="note"><b>Threads:</b> Gold · White · Red (navy centre = the jacket)</div></div><div class="card " data-e="C">
+    <div class="swatch"><svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="110" cy="266" rx="96" ry="16" fill="#2E6B3F"></ellipse>
+  <ellipse cx="60" cy="266" rx="13" ry="4.5" fill="#1B2A41"></ellipse>
+  <circle cx="128" cy="258" r="8" fill="#FFFFFF"></circle>
+  <line x1="60" y1="22" x2="60" y2="264" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"></line>
+  <circle cx="60" cy="18" r="6" fill="#C9A227"></circle>
+  <path d="M63,28 L282,84 L63,140 Z" fill="#B3282D" stroke="#C9A227" stroke-width="5" stroke-linejoin="round"></path>
+  <text x="130" y="100" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="44" fill="#FFFFFF">DLG</text>
+  <text x="190" y="196" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="20" letter-spacing="1" fill="#C9A227">INVITATIONAL</text>
+  <text x="190" y="224" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="15" letter-spacing="3" fill="#FFFFFF">EST · 2026</text>
+</svg></div><div class="label">C · The pin flag</div><div class="note">A golf flag with DLG on it. The most playful — less blazer, more tour bag.</div><div class="note"><b>Threads:</b> Red · Gold · White · Green</div></div></div>
+    <div id="scrolls"><h3 class="mini">1 · The crest — what goes above the shield and on the scroll</h3><div class="grid4"><div class="card on" data-s="motto"><div class="swatch small"><svg viewBox="0 0 300 360" xmlns="http://www.w3.org/2000/svg">
+  <g stroke-linecap="round">
+    <line x1="70" y1="44" x2="226" y2="262" stroke="#FFFFFF" stroke-width="7"></line>
+    <line x1="230" y1="44" x2="74" y2="262" stroke="#FFFFFF" stroke-width="7"></line>
+    <line x1="70" y1="44" x2="86" y2="66" stroke="#C9A227" stroke-width="12"></line>
+    <line x1="230" y1="44" x2="214" y2="66" stroke="#C9A227" stroke-width="12"></line>
+  </g>
+  <path d="M220,256 L252,264 L248,280 L216,272 Z" fill="#C9A227"></path>
+  <path d="M80,256 L48,264 L52,280 L84,272 Z" fill="#C9A227"></path>
+  <path d="M80,62 H220 V170 C220,232 186,268 150,286 C114,268 80,232 80,170 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="7" stroke-linejoin="round"></path>
+  <path d="M150.0,23.0L152.9,30.0L160.5,30.6L154.7,35.5L156.5,42.9L150.0,39.0L143.5,42.9L145.3,35.5L139.5,30.6L147.1,30.0Z" fill="#C9A227"></path>
+  <text x="134" y="40" text-anchor="end" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="16" letter-spacing="2" fill="#C9A227">EST</text><text x="166" y="40" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="16" letter-spacing="2" fill="#C9A227">2026</text>
+  
+  <text class="dlg" x="150" y="144" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="54" fill="#C9A227">DLG</text>
+  <text class="fit" x="150" y="169" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="14" textLength="114.0" lengthAdjust="spacing" fill="#FFFFFF">INVITATIONAL</text>
+  <circle cx="150" cy="192" r="10" fill="#FFFFFF"></circle>
+  <path d="M143,203 H157 L152,209 V226 H148 V209 Z" fill="#C9A227"></path>
+  <path d="M40,304 L8,312 L22,326 L8,342 L40,336 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M260,304 L292,312 L278,326 L292,342 L260,336 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M36,300 Q150,330 264,300 L264,336 Q150,366 36,336 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p4" d="M46,326 Q150,356 254,326" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="10.5" font-weight="700" textLength="204" lengthAdjust="spacingAndGlyphs" fill="#C9A227"><textPath href="#p4" startOffset="50%" text-anchor="middle">GOOD MATES · VITA BREVIS · BAD GOLF</textPath></text>
+</svg></div><div class="label">EST 2026 on top, the slogan in the scroll<span class="tag star">Lachlan's idea</span></div><div class="note">Lachlan's idea — the date above the shield, the trip slogan in the scroll, and that is the crest. But at chest size (100 mm) the slogan letters come out about 2 mm tall: too small to stitch cleanly.</div></div><div class="card " data-s="mottoshort"><div class="swatch small"><svg viewBox="0 0 300 360" xmlns="http://www.w3.org/2000/svg">
+  <g stroke-linecap="round">
+    <line x1="70" y1="44" x2="226" y2="262" stroke="#FFFFFF" stroke-width="7"></line>
+    <line x1="230" y1="44" x2="74" y2="262" stroke="#FFFFFF" stroke-width="7"></line>
+    <line x1="70" y1="44" x2="86" y2="66" stroke="#C9A227" stroke-width="12"></line>
+    <line x1="230" y1="44" x2="214" y2="66" stroke="#C9A227" stroke-width="12"></line>
+  </g>
+  <path d="M220,256 L252,264 L248,280 L216,272 Z" fill="#C9A227"></path>
+  <path d="M80,256 L48,264 L52,280 L84,272 Z" fill="#C9A227"></path>
+  <path d="M80,62 H220 V170 C220,232 186,268 150,286 C114,268 80,232 80,170 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="7" stroke-linejoin="round"></path>
+  <path d="M150.0,23.0L152.9,30.0L160.5,30.6L154.7,35.5L156.5,42.9L150.0,39.0L143.5,42.9L145.3,35.5L139.5,30.6L147.1,30.0Z" fill="#C9A227"></path>
+  <text x="134" y="40" text-anchor="end" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="16" letter-spacing="2" fill="#C9A227">EST</text><text x="166" y="40" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="16" letter-spacing="2" fill="#C9A227">2026</text>
+  
+  <text class="dlg" x="150" y="144" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="54" fill="#C9A227">DLG</text>
+  <text class="fit" x="150" y="169" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="14" textLength="114.0" lengthAdjust="spacing" fill="#FFFFFF">INVITATIONAL</text>
+  <circle cx="150" cy="192" r="10" fill="#FFFFFF"></circle>
+  <path d="M143,203 H157 L152,209 V226 H148 V209 Z" fill="#C9A227"></path>
+  <path d="M40,304 L8,312 L22,326 L8,342 L40,336 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M260,304 L292,312 L278,326 L292,342 L260,336 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M36,300 Q150,330 264,300 L264,336 Q150,366 36,336 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p5" d="M46,326 Q150,356 254,326" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="19" font-weight="700" letter-spacing="2.5" fill="#C9A227"><textPath href="#p5" startOffset="50%" text-anchor="middle">VITA BREVIS</textPath></text>
+</svg></div><div class="label">Same, with VITA BREVIS in the scroll</div><div class="note">Lachlan's idea, made stitchable — the two words that matter, letters about 4–5 mm on the chest. The full slogan stays across the back.</div></div><div class="card " data-s="est"><div class="swatch small"><svg viewBox="0 0 300 360" xmlns="http://www.w3.org/2000/svg">
+  <g stroke-linecap="round">
+    <line x1="70" y1="44" x2="226" y2="262" stroke="#FFFFFF" stroke-width="7"></line>
+    <line x1="230" y1="44" x2="74" y2="262" stroke="#FFFFFF" stroke-width="7"></line>
+    <line x1="70" y1="44" x2="86" y2="66" stroke="#C9A227" stroke-width="12"></line>
+    <line x1="230" y1="44" x2="214" y2="66" stroke="#C9A227" stroke-width="12"></line>
+  </g>
+  <path d="M220,256 L252,264 L248,280 L216,272 Z" fill="#C9A227"></path>
+  <path d="M80,256 L48,264 L52,280 L84,272 Z" fill="#C9A227"></path>
+  <path d="M80,62 H220 V170 C220,232 186,268 150,286 C114,268 80,232 80,170 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="7" stroke-linejoin="round"></path>
+  <path d="M150.0,23.0L152.9,30.0L160.5,30.6L154.7,35.5L156.5,42.9L150.0,39.0L143.5,42.9L145.3,35.5L139.5,30.6L147.1,30.0Z" fill="#C9A227"></path>
+  
+  
+  <text class="dlg" x="150" y="144" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="54" fill="#C9A227">DLG</text>
+  <text class="fit" x="150" y="169" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="14" textLength="114.0" lengthAdjust="spacing" fill="#FFFFFF">INVITATIONAL</text>
+  <circle cx="150" cy="192" r="10" fill="#FFFFFF"></circle>
+  <path d="M143,203 H157 L152,209 V226 H148 V209 Z" fill="#C9A227"></path>
+  <path d="M40,304 L8,312 L22,326 L8,342 L40,336 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M260,304 L292,312 L278,326 L292,342 L260,336 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M36,300 Q150,330 264,300 L264,336 Q150,366 36,336 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p6" d="M46,326 Q150,356 254,326" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="19" letter-spacing="3" fill="#C9A227"><textPath href="#p6" startOffset="50%" text-anchor="middle">EST · 2026</textPath></text>
+</svg></div><div class="label">Scroll with EST · 2026 in it</div><div class="note">The traditional crest — the date in the scroll.</div></div><div class="card " data-s="none"><div class="swatch small"><svg viewBox="0 0 300 298" xmlns="http://www.w3.org/2000/svg">
+  <g stroke-linecap="round">
+    <line x1="70" y1="44" x2="226" y2="262" stroke="#FFFFFF" stroke-width="7"></line>
+    <line x1="230" y1="44" x2="74" y2="262" stroke="#FFFFFF" stroke-width="7"></line>
+    <line x1="70" y1="44" x2="86" y2="66" stroke="#C9A227" stroke-width="12"></line>
+    <line x1="230" y1="44" x2="214" y2="66" stroke="#C9A227" stroke-width="12"></line>
+  </g>
+  <path d="M220,256 L252,264 L248,280 L216,272 Z" fill="#C9A227"></path>
+  <path d="M80,256 L48,264 L52,280 L84,272 Z" fill="#C9A227"></path>
+  <path d="M80,62 H220 V170 C220,232 186,268 150,286 C114,268 80,232 80,170 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="7" stroke-linejoin="round"></path>
+  <path d="M150.0,23.0L152.9,30.0L160.5,30.6L154.7,35.5L156.5,42.9L150.0,39.0L143.5,42.9L145.3,35.5L139.5,30.6L147.1,30.0Z" fill="#C9A227"></path>
+  
+  <text x="150" y="98" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="15" letter-spacing="3" fill="#FFFFFF">EST · 2026</text>
+  <text class="dlg" x="150" y="170" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="54" fill="#C9A227">DLG</text>
+  <text class="fit" x="150" y="195" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="14" textLength="114.0" lengthAdjust="spacing" fill="#FFFFFF">INVITATIONAL</text>
+  <circle cx="150" cy="218" r="10" fill="#FFFFFF"></circle>
+  <path d="M143,229 H157 L152,235 V252 H148 V235 Z" fill="#C9A227"></path>
+  
+</svg></div><div class="label">No scroll</div><div class="note">Cleaner and a bit shorter. EST · 2026 stays at the top of the shield.</div></div></div></div>
+    <div id="pals"><h3 class="mini">2 · The crest colours, on the navy pinstripe</h3><div class="grid4"><div class="card on" data-p="navygold"><div class="swatch small stripe"><svg viewBox="0 0 300 360" xmlns="http://www.w3.org/2000/svg">
+  <g stroke-linecap="round">
+    <line x1="70" y1="44" x2="226" y2="262" stroke="#FFFFFF" stroke-width="7"></line>
+    <line x1="230" y1="44" x2="74" y2="262" stroke="#FFFFFF" stroke-width="7"></line>
+    <line x1="70" y1="44" x2="86" y2="66" stroke="#C9A227" stroke-width="12"></line>
+    <line x1="230" y1="44" x2="214" y2="66" stroke="#C9A227" stroke-width="12"></line>
+  </g>
+  <path d="M220,256 L252,264 L248,280 L216,272 Z" fill="#C9A227"></path>
+  <path d="M80,256 L48,264 L52,280 L84,272 Z" fill="#C9A227"></path>
+  <path d="M80,62 H220 V170 C220,232 186,268 150,286 C114,268 80,232 80,170 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="7" stroke-linejoin="round"></path>
+  <path d="M150.0,23.0L152.9,30.0L160.5,30.6L154.7,35.5L156.5,42.9L150.0,39.0L143.5,42.9L145.3,35.5L139.5,30.6L147.1,30.0Z" fill="#C9A227"></path>
+  <text x="134" y="40" text-anchor="end" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="16" letter-spacing="2" fill="#C9A227">EST</text><text x="166" y="40" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="16" letter-spacing="2" fill="#C9A227">2026</text>
+  
+  <text class="dlg" x="150" y="144" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="54" fill="#C9A227">DLG</text>
+  <text class="fit" x="150" y="169" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="14" textLength="114.0" lengthAdjust="spacing" fill="#FFFFFF">INVITATIONAL</text>
+  <circle cx="150" cy="192" r="10" fill="#FFFFFF"></circle>
+  <path d="M143,203 H157 L152,209 V226 H148 V209 Z" fill="#C9A227"></path>
+  <path d="M40,304 L8,312 L22,326 L8,342 L40,336 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M260,304 L292,312 L278,326 L292,342 L260,336 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M36,300 Q150,330 264,300 L264,336 Q150,366 36,336 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p8" d="M46,326 Q150,356 254,326" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="10.5" font-weight="700" textLength="204" lengthAdjust="spacingAndGlyphs" fill="#C9A227"><textPath href="#p8" startOffset="50%" text-anchor="middle">GOOD MATES · VITA BREVIS · BAD GOLF</textPath></text>
+</svg></div><div class="swatch small stripe rib"><svg viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg">
+  <path d="M70,48 L14,58 L34,80 L14,104 L70,96 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M530,48 L586,58 L566,80 L586,104 L530,96 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M60,40 Q300,80 540,40 L540,96 Q300,136 60,96 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p9" d="M70,73.8 Q300,113.8 530,73.8" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="16.6" letter-spacing="1.5" fill="#C9A227"><textPath href="#p9" startOffset="50%" text-anchor="middle">GOOD MATES · VITA BREVIS · BAD GOLF</textPath></text>
+</svg></div>
+      <div class="label">Navy &amp; gold</div><div class="note">The blazer-badge look — same family as the Masters crest. Gold carries it, so it sits on the pinstripe without fighting it.</div><div class="note"><b>Threads:</b> Gold · White (the shield and ribbon are navy, the same as the jacket)</div></div><div class="card " data-p="navysilver"><div class="swatch small stripe"><svg viewBox="0 0 300 360" xmlns="http://www.w3.org/2000/svg">
+  <g stroke-linecap="round">
+    <line x1="70" y1="44" x2="226" y2="262" stroke="#FFFFFF" stroke-width="7"></line>
+    <line x1="230" y1="44" x2="74" y2="262" stroke="#FFFFFF" stroke-width="7"></line>
+    <line x1="70" y1="44" x2="86" y2="66" stroke="#C3C8CF" stroke-width="12"></line>
+    <line x1="230" y1="44" x2="214" y2="66" stroke="#C3C8CF" stroke-width="12"></line>
+  </g>
+  <path d="M220,256 L252,264 L248,280 L216,272 Z" fill="#C3C8CF"></path>
+  <path d="M80,256 L48,264 L52,280 L84,272 Z" fill="#C3C8CF"></path>
+  <path d="M80,62 H220 V170 C220,232 186,268 150,286 C114,268 80,232 80,170 Z" fill="#1B2A41" stroke="#C3C8CF" stroke-width="7" stroke-linejoin="round"></path>
+  <path d="M150.0,23.0L152.9,30.0L160.5,30.6L154.7,35.5L156.5,42.9L150.0,39.0L143.5,42.9L145.3,35.5L139.5,30.6L147.1,30.0Z" fill="#C3C8CF"></path>
+  <text x="134" y="40" text-anchor="end" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="16" letter-spacing="2" fill="#C3C8CF">EST</text><text x="166" y="40" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="16" letter-spacing="2" fill="#C3C8CF">2026</text>
+  
+  <text class="dlg" x="150" y="144" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="54" fill="#FFFFFF">DLG</text>
+  <text class="fit" x="150" y="169" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="14" textLength="114.0" lengthAdjust="spacing" fill="#C3C8CF">INVITATIONAL</text>
+  <circle cx="150" cy="192" r="10" fill="#FFFFFF"></circle>
+  <path d="M143,203 H157 L152,209 V226 H148 V209 Z" fill="#C9A227"></path>
+  <path d="M40,304 L8,312 L22,326 L8,342 L40,336 Z" fill="#0F1828" stroke="#C3C8CF" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M260,304 L292,312 L278,326 L292,342 L260,336 Z" fill="#0F1828" stroke="#C3C8CF" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M36,300 Q150,330 264,300 L264,336 Q150,366 36,336 Z" fill="#1B2A41" stroke="#C3C8CF" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p10" d="M46,326 Q150,356 254,326" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="10.5" font-weight="700" textLength="204" lengthAdjust="spacingAndGlyphs" fill="#FFFFFF"><textPath href="#p10" startOffset="50%" text-anchor="middle">GOOD MATES · VITA BREVIS · BAD GOLF</textPath></text>
+</svg></div><div class="swatch small stripe rib"><svg viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg">
+  <path d="M70,48 L14,58 L34,80 L14,104 L70,96 Z" fill="#0F1828" stroke="#C3C8CF" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M530,48 L586,58 L566,80 L586,104 L530,96 Z" fill="#0F1828" stroke="#C3C8CF" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M60,40 Q300,80 540,40 L540,96 Q300,136 60,96 Z" fill="#1B2A41" stroke="#C3C8CF" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p11" d="M70,73.8 Q300,113.8 530,73.8" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="16.6" letter-spacing="1.5" fill="#FFFFFF"><textPath href="#p11" startOffset="50%" text-anchor="middle">GOOD MATES · VITA BREVIS · BAD GOLF</textPath></text>
+</svg></div>
+      <div class="label">Navy &amp; silver</div><div class="note">Picks up a white or grey pinstripe. Quieter, very smart — but less punch from across the room.</div><div class="note"><b>Threads:</b> Silver · White · a touch of Gold (navy shield and ribbon)</div></div><div class="card " data-p="lightgreen"><div class="swatch small stripe"><svg viewBox="0 0 300 360" xmlns="http://www.w3.org/2000/svg">
+  <g stroke-linecap="round">
+    <line x1="70" y1="44" x2="226" y2="262" stroke="#FFFFFF" stroke-width="7"></line>
+    <line x1="230" y1="44" x2="74" y2="262" stroke="#FFFFFF" stroke-width="7"></line>
+    <line x1="70" y1="44" x2="86" y2="66" stroke="#C9A227" stroke-width="12"></line>
+    <line x1="230" y1="44" x2="214" y2="66" stroke="#C9A227" stroke-width="12"></line>
+  </g>
+  <path d="M220,256 L252,264 L248,280 L216,272 Z" fill="#C9A227"></path>
+  <path d="M80,256 L48,264 L52,280 L84,272 Z" fill="#C9A227"></path>
+  <path d="M80,62 H220 V170 C220,232 186,268 150,286 C114,268 80,232 80,170 Z" fill="#8DBF86" stroke="#C9A227" stroke-width="7" stroke-linejoin="round"></path>
+  <path d="M150.0,23.0L152.9,30.0L160.5,30.6L154.7,35.5L156.5,42.9L150.0,39.0L143.5,42.9L145.3,35.5L139.5,30.6L147.1,30.0Z" fill="#C9A227"></path>
+  <text x="134" y="40" text-anchor="end" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="16" letter-spacing="2" fill="#C9A227">EST</text><text x="166" y="40" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="16" letter-spacing="2" fill="#C9A227">2026</text>
+  
+  <text class="dlg" x="150" y="144" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="54" fill="#1B2A41">DLG</text>
+  <text class="fit" x="150" y="169" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="14" textLength="114.0" lengthAdjust="spacing" fill="#1B2A41">INVITATIONAL</text>
+  <circle cx="150" cy="192" r="10" fill="#FFFFFF"></circle>
+  <path d="M143,203 H157 L152,209 V226 H148 V209 Z" fill="#C9A227"></path>
+  <path d="M40,304 L8,312 L22,326 L8,342 L40,336 Z" fill="#5E9157" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M260,304 L292,312 L278,326 L292,342 L260,336 Z" fill="#5E9157" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M36,300 Q150,330 264,300 L264,336 Q150,366 36,336 Z" fill="#8DBF86" stroke="#C9A227" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p12" d="M46,326 Q150,356 254,326" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="10.5" font-weight="700" textLength="204" lengthAdjust="spacingAndGlyphs" fill="#1B2A41"><textPath href="#p12" startOffset="50%" text-anchor="middle">GOOD MATES · VITA BREVIS · BAD GOLF</textPath></text>
+</svg></div><div class="swatch small stripe rib"><svg viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg">
+  <path d="M70,48 L14,58 L34,80 L14,104 L70,96 Z" fill="#5E9157" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M530,48 L586,58 L566,80 L586,104 L530,96 Z" fill="#5E9157" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M60,40 Q300,80 540,40 L540,96 Q300,136 60,96 Z" fill="#8DBF86" stroke="#C9A227" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p13" d="M70,73.8 Q300,113.8 530,73.8" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="16.6" letter-spacing="1.5" fill="#1B2A41"><textPath href="#p13" startOffset="50%" text-anchor="middle">GOOD MATES · VITA BREVIS · BAD GOLF</textPath></text>
+</svg></div>
+      <div class="label">Light green &amp; gold</div><div class="note">Green and gold — and a nod to the Masters green. Gold won't show up on light green, so the lettering is navy to match the jacket. Brightest of the four; the most "golf day".</div><div class="note"><b>Threads:</b> Light green · Gold · Navy lettering · White</div></div><div class="card " data-p="red"><div class="swatch small stripe"><svg viewBox="0 0 300 360" xmlns="http://www.w3.org/2000/svg">
+  <g stroke-linecap="round">
+    <line x1="70" y1="44" x2="226" y2="262" stroke="#FFFFFF" stroke-width="7"></line>
+    <line x1="230" y1="44" x2="74" y2="262" stroke="#FFFFFF" stroke-width="7"></line>
+    <line x1="70" y1="44" x2="86" y2="66" stroke="#C9A227" stroke-width="12"></line>
+    <line x1="230" y1="44" x2="214" y2="66" stroke="#C9A227" stroke-width="12"></line>
+  </g>
+  <path d="M220,256 L252,264 L248,280 L216,272 Z" fill="#C9A227"></path>
+  <path d="M80,256 L48,264 L52,280 L84,272 Z" fill="#C9A227"></path>
+  <path d="M80,62 H220 V170 C220,232 186,268 150,286 C114,268 80,232 80,170 Z" fill="#B3282D" stroke="#C9A227" stroke-width="7" stroke-linejoin="round"></path>
+  <path d="M150.0,23.0L152.9,30.0L160.5,30.6L154.7,35.5L156.5,42.9L150.0,39.0L143.5,42.9L145.3,35.5L139.5,30.6L147.1,30.0Z" fill="#C9A227"></path>
+  <text x="134" y="40" text-anchor="end" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="16" letter-spacing="2" fill="#C9A227">EST</text><text x="166" y="40" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="16" letter-spacing="2" fill="#C9A227">2026</text>
+  
+  <text class="dlg" x="150" y="144" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="54" fill="#FFFFFF">DLG</text>
+  <text class="fit" x="150" y="169" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="14" textLength="114.0" lengthAdjust="spacing" fill="#C9A227">INVITATIONAL</text>
+  <circle cx="150" cy="192" r="10" fill="#FFFFFF"></circle>
+  <path d="M143,203 H157 L152,209 V226 H148 V209 Z" fill="#C9A227"></path>
+  <path d="M40,304 L8,312 L22,326 L8,342 L40,336 Z" fill="#86191D" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M260,304 L292,312 L278,326 L292,342 L260,336 Z" fill="#86191D" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M36,300 Q150,330 264,300 L264,336 Q150,366 36,336 Z" fill="#B3282D" stroke="#C9A227" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p14" d="M46,326 Q150,356 254,326" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="10.5" font-weight="700" textLength="204" lengthAdjust="spacingAndGlyphs" fill="#FFFFFF"><textPath href="#p14" startOffset="50%" text-anchor="middle">GOOD MATES · VITA BREVIS · BAD GOLF</textPath></text>
+</svg></div><div class="swatch small stripe rib"><svg viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg">
+  <path d="M70,48 L14,58 L34,80 L14,104 L70,96 Z" fill="#86191D" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M530,48 L586,58 L566,80 L586,104 L530,96 Z" fill="#86191D" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M60,40 Q300,80 540,40 L540,96 Q300,136 60,96 Z" fill="#B3282D" stroke="#C9A227" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p15" d="M70,73.8 Q300,113.8 530,73.8" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="16.6" letter-spacing="1.5" fill="#FFFFFF"><textPath href="#p15" startOffset="50%" text-anchor="middle">GOOD MATES · VITA BREVIS · BAD GOLF</textPath></text>
+</svg></div>
+      <div class="label">Red &amp; gold</div><div class="note">The loud one. Pops hardest, but red on navy pinstripe is a lot going on.</div><div class="note"><b>Threads:</b> Gold · White · Red</div></div></div></div>
+    <div id="chest"></div>
+
+    <div id="mottos" hidden=""><div class="card motto on" data-m="0">
+    <div class="swatch"><svg viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg">
+  <path d="M70,48 L14,58 L34,80 L14,104 L70,96 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M530,48 L586,58 L566,80 L586,104 L530,96 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M60,40 Q300,80 540,40 L540,96 Q300,136 60,96 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p16" d="M70,73.8 Q300,113.8 530,73.8" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="16.6" letter-spacing="1.5" fill="#C9A227"><textPath href="#p16" startOffset="50%" text-anchor="middle">GOOD MATES · VITA BREVIS · BAD GOLF</textPath></text>
+</svg></div>
+    <div class="label">1 · GOOD MATES · VITA BREVIS · BAD GOLF<span class="tag star">chosen</span><span class="tag clean">clean</span></div><div class="note">Chosen. "Vita brevis" is Latin for "life is short" — sat right in the middle of the mates and the golf.</div></div><div class="card motto " data-m="1">
+    <div class="swatch"><svg viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg">
+  <path d="M70,48 L14,58 L34,80 L14,104 L70,96 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M530,48 L586,58 L566,80 L586,104 L530,96 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M60,40 Q300,80 540,40 L540,96 Q300,136 60,96 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p17" d="M70,74.6 Q300,114.6 530,74.6" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="18.7" letter-spacing="1.5" fill="#C9A227"><textPath href="#p17" startOffset="50%" text-anchor="middle">LIFE'S SHORT. SO IS YOUR DRIVE.</textPath></text>
+</svg></div>
+    <div class="label">2 · LIFE'S SHORT. SO IS YOUR DRIVE.<span class="tag clean">clean</span></div><div class="note">Life is short — and so is everyone's drive. Works on anyone.</div></div><div class="card motto " data-m="2">
+    <div class="swatch"><svg viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg">
+  <path d="M70,48 L14,58 L34,80 L14,104 L70,96 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M530,48 L586,58 L566,80 L586,104 L530,96 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M60,40 Q300,80 540,40 L540,96 Q300,136 60,96 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p18" d="M70,78.5 Q300,118.5 530,78.5" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="30.0" letter-spacing="1.5" fill="#C9A227"><textPath href="#p18" startOffset="50%" text-anchor="middle">CARPE FAIRWAY</textPath></text>
+</svg></div>
+    <div class="label">3 · CARPE FAIRWAY<span class="tag clean">clean</span></div><div class="note">"Seize the fairway." Fake Latin for seize the day — short enough to go on the chest too.</div></div><div class="card motto " data-m="3">
+    <div class="swatch"><svg viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg">
+  <path d="M70,48 L14,58 L34,80 L14,104 L70,96 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M530,48 L586,58 L566,80 L586,104 L530,96 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M60,40 Q300,80 540,40 L540,96 Q300,136 60,96 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p19" d="M70,78.2 Q300,118.2 530,78.2" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="29.1" letter-spacing="1.5" fill="#C9A227"><textPath href="#p19" startOffset="50%" text-anchor="middle">MEMENTO MORI · FORE!</textPath></text>
+</svg></div>
+    <div class="label">4 · MEMENTO MORI · FORE!<span class="tag clean">clean</span></div><div class="note">"Remember you will die" — then shout fore. Old-school crest motto with a punchline.</div></div><div class="card motto " data-m="4">
+    <div class="swatch"><svg viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg">
+  <path d="M70,48 L14,58 L34,80 L14,104 L70,96 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M530,48 L586,58 L566,80 L586,104 L530,96 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M60,40 Q300,80 540,40 L540,96 Q300,136 60,96 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p20" d="M70,73.4 Q300,113.4 530,73.4" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="15.3" letter-spacing="1.5" fill="#C9A227"><textPath href="#p20" startOffset="50%" text-anchor="middle">ONE DAY YOU WON'T. TODAY YOU FKN GOLF.</textPath></text>
+</svg></div>
+    <div class="label">5 · ONE DAY YOU WON'T. TODAY YOU FKN GOLF.<span class="tag spicy">spicy</span></div><div class="note">The whole message in one line: you won't always be able to, so play.</div></div><div class="card motto " data-m="5">
+    <div class="swatch"><svg viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg">
+  <path d="M70,48 L14,58 L34,80 L14,104 L70,96 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M530,48 L586,58 L566,80 L586,104 L530,96 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M60,40 Q300,80 540,40 L540,96 Q300,136 60,96 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p21" d="M70,74.0 Q300,114.0 530,74.0" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="17.1" letter-spacing="1.5" fill="#C9A227"><textPath href="#p21" startOffset="50%" text-anchor="middle">GOOD MATES · BAD GOLF · NO REGRETS</textPath></text>
+</svg></div>
+    <div class="label">6 · GOOD MATES · BAD GOLF · NO REGRETS<span class="tag clean">clean</span></div><div class="note">The trip, summed up.</div></div><div class="card motto " data-m="6">
+    <div class="swatch"><svg viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg">
+  <path d="M70,48 L14,58 L34,80 L14,104 L70,96 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M530,48 L586,58 L566,80 L586,104 L530,96 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M60,40 Q300,80 540,40 L540,96 Q300,136 60,96 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p22" d="M70,73.2 Q300,113.2 530,73.2" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="14.9" letter-spacing="1.5" fill="#C9A227"><textPath href="#p22" startOffset="50%" text-anchor="middle">HIT IT · FIND IT · DRINK IT · DIE HAPPY</textPath></text>
+</svg></div>
+    <div class="label">7 · HIT IT · FIND IT · DRINK IT · DIE HAPPY<span class="tag clean">clean</span></div><div class="note">A life plan in four steps.</div></div><div class="card motto " data-m="7">
+    <div class="swatch"><svg viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg">
+  <path d="M70,48 L14,58 L34,80 L14,104 L70,96 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M530,48 L586,58 L566,80 L586,104 L530,96 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M60,40 Q300,80 540,40 L540,96 Q300,136 60,96 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p23" d="M70,74.0 Q300,114.0 530,74.0" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="17.1" letter-spacing="1.5" fill="#C9A227"><textPath href="#p23" startOffset="50%" text-anchor="middle">PLAY WHILE YOU CAN STILL BEND OVER</textPath></text>
+</svg></div>
+    <div class="label">8 · PLAY WHILE YOU CAN STILL BEND OVER<span class="tag clean">clean</span></div><div class="note">For the hips and the backs. Tee it up while you still can.</div></div><div class="card motto " data-m="8">
+    <div class="swatch"><svg viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg">
+  <path d="M70,48 L14,58 L34,80 L14,104 L70,96 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M530,48 L586,58 L566,80 L586,104 L530,96 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M60,40 Q300,80 540,40 L540,96 Q300,136 60,96 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p24" d="M70,75.5 Q300,115.5 530,75.5" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="21.5" letter-spacing="1.5" fill="#C9A227"><textPath href="#p24" startOffset="50%" text-anchor="middle">VITA BREVIS · FKN TEE IT UP</textPath></text>
+</svg></div>
+    <div class="label">9 · VITA BREVIS · FKN TEE IT UP<span class="tag spicy">spicy</span></div><div class="note">"Life is short" in Latin, then the instruction.</div></div></div>
+  </div>
+
+  <h2>How it looks</h2>
+  <p class="sub">Front: the crest on the left chest. Back: the banner across the top, then the roll of honour — the dotted lines are just room for future winners.</p>
+  <div id="colours" hidden="">Jacket colour: <button class="on" data-c="pinstripe"><span class="dot" style="background:#1B2A41"></span>Navy pinstripe</button><button class="" data-c="green"><span class="dot" style="background:#0F4D32"></span>Green</button><button class="" data-c="navy"><span class="dot" style="background:#1B2A41"></span>Navy</button><button class="" data-c="black"><span class="dot" style="background:#17191D"></span>Black</button><button class="" data-c="charcoal"><span class="dot" style="background:#3A3F47"></span>Charcoal</button></div>
+  <div class="jackets" style="margin-top:12px">
+    <div class="card"><div class="label" style="margin:0 0 6px">Front</div><div id="front"><svg viewBox="0 0 500 560" xmlns="http://www.w3.org/2000/svg">
+  <path d="M195,60 L130,78 L70,112 L28,330 L78,342 L108,210 L112,540 L388,540 L392,210 L422,342 L472,330 L430,112 L370,78 L305,60 Q250,88 195,60 Z" fill="#1B2A41" stroke="#0F1828" stroke-width="3" stroke-linejoin="round"></path>
+  <defs><pattern id="p25" width="6" height="6" patternUnits="userSpaceOnUse"><line x1="3" y1="0" x2="3" y2="6" stroke="#E6E8EC" stroke-opacity=".32" stroke-width=".6"></line></pattern></defs><path d="M195,60 L130,78 L70,112 L28,330 L78,342 L108,210 L112,540 L388,540 L392,210 L422,342 L472,330 L430,112 L370,78 L305,60 Q250,88 195,60 Z" fill="url(#p25)"></path>
+  <path d="M130,78 Q118,150 108,210 M370,78 Q382,150 392,210" fill="none" stroke="#0F1828" stroke-width="2"></path>
+  <path d="M28,330 L78,342 M422,342 L472,330" stroke="#0F1828" stroke-width="6"></path>
+  <rect x="112" y="524" width="276" height="16" fill="#0F1828" opacity=".55"></rect>
+  <path d="M195,60 Q250,88 305,60 L300,34 Q250,58 200,34 Z" fill="#1B2A41" stroke="#0F1828" stroke-width="3" stroke-linejoin="round"></path>
+  <line x1="250" y1="46" x2="250" y2="540" stroke="#C9CDD4" stroke-width="2"></line>
+  <rect x="246" y="50" width="8" height="16" rx="2" fill="#C9CDD4"></rect>
+  
+  <svg x="286" y="128" width="50" height="60" viewBox="0 0 300 360" xmlns="http://www.w3.org/2000/svg">
+  <g stroke-linecap="round">
+    <line x1="70" y1="44" x2="226" y2="262" stroke="#FFFFFF" stroke-width="7"></line>
+    <line x1="230" y1="44" x2="74" y2="262" stroke="#FFFFFF" stroke-width="7"></line>
+    <line x1="70" y1="44" x2="86" y2="66" stroke="#C9A227" stroke-width="12"></line>
+    <line x1="230" y1="44" x2="214" y2="66" stroke="#C9A227" stroke-width="12"></line>
+  </g>
+  <path d="M220,256 L252,264 L248,280 L216,272 Z" fill="#C9A227"></path>
+  <path d="M80,256 L48,264 L52,280 L84,272 Z" fill="#C9A227"></path>
+  <path d="M80,62 H220 V170 C220,232 186,268 150,286 C114,268 80,232 80,170 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="7" stroke-linejoin="round"></path>
+  <path d="M150.0,23.0L152.9,30.0L160.5,30.6L154.7,35.5L156.5,42.9L150.0,39.0L143.5,42.9L145.3,35.5L139.5,30.6L147.1,30.0Z" fill="#C9A227"></path>
+  <text x="134" y="40" text-anchor="end" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="16" letter-spacing="2" fill="#C9A227">EST</text><text x="166" y="40" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="16" letter-spacing="2" fill="#C9A227">2026</text>
+  
+  <text class="dlg" x="150" y="144" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="54" fill="#C9A227">DLG</text>
+  <text class="fit" x="150" y="169" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="14" textLength="113.9" lengthAdjust="spacing" fill="#FFFFFF">INVITATIONAL</text>
+  <circle cx="150" cy="192" r="10" fill="#FFFFFF"></circle>
+  <path d="M143,203 H157 L152,209 V226 H148 V209 Z" fill="#C9A227"></path>
+  <path d="M40,304 L8,312 L22,326 L8,342 L40,336 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M260,304 L292,312 L278,326 L292,342 L260,336 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M36,300 Q150,330 264,300 L264,336 Q150,366 36,336 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p26" d="M46,326 Q150,356 254,326" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="10.5" font-weight="700" textLength="204" lengthAdjust="spacingAndGlyphs" fill="#C9A227"><textPath href="#p26" startOffset="50%" text-anchor="middle">GOOD MATES · VITA BREVIS · BAD GOLF</textPath></text>
+</svg>
+  <text x="311" y="210" text-anchor="middle" font-family="Helvetica, Arial" font-size="9" fill="#ffffff99">left chest · 100 mm</text>
+</svg></div></div>
+    <div class="card"><div class="label" style="margin:0 0 6px">Back</div><div id="back"><svg viewBox="0 0 500 560" xmlns="http://www.w3.org/2000/svg">
+  <path d="M195,60 L130,78 L70,112 L28,330 L78,342 L108,210 L112,540 L388,540 L392,210 L422,342 L472,330 L430,112 L370,78 L305,60 Q250,88 195,60 Z" fill="#1B2A41" stroke="#0F1828" stroke-width="3" stroke-linejoin="round"></path>
+  <defs><pattern id="p27" width="6" height="6" patternUnits="userSpaceOnUse"><line x1="3" y1="0" x2="3" y2="6" stroke="#E6E8EC" stroke-opacity=".32" stroke-width=".6"></line></pattern></defs><path d="M195,60 L130,78 L70,112 L28,330 L78,342 L108,210 L112,540 L388,540 L392,210 L422,342 L472,330 L430,112 L370,78 L305,60 Q250,88 195,60 Z" fill="url(#p27)"></path>
+  <path d="M130,78 Q118,150 108,210 M370,78 Q382,150 392,210" fill="none" stroke="#0F1828" stroke-width="2"></path>
+  <path d="M28,330 L78,342 M422,342 L472,330" stroke="#0F1828" stroke-width="6"></path>
+  <rect x="112" y="524" width="276" height="16" fill="#0F1828" opacity=".55"></rect>
+  <path d="M195,60 Q250,70 305,60 L300,36 Q250,48 200,36 Z" fill="#1B2A41" stroke="#0F1828" stroke-width="3" stroke-linejoin="round"></path>
+  <svg x="150" y="92" width="200" height="50.0" viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg">
+  <path d="M70,48 L14,58 L34,80 L14,104 L70,96 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M530,48 L586,58 L566,80 L586,104 L530,96 Z" fill="#0F1828" stroke="#C9A227" stroke-width="3" stroke-linejoin="round"></path>
+  <path d="M60,40 Q300,80 540,40 L540,96 Q300,136 60,96 Z" fill="#1B2A41" stroke="#C9A227" stroke-width="4" stroke-linejoin="round"></path>
+  <path id="p28" d="M70,73.8 Q300,113.8 530,73.8" fill="none"></path>
+  <text font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="16.6" letter-spacing="1.5" fill="#C9A227"><textPath href="#p28" startOffset="50%" text-anchor="middle">GOOD MATES · VITA BREVIS · BAD GOLF</textPath></text>
+</svg>
+  <text x="250" y="184" text-anchor="middle" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-weight="700" font-size="15" textLength="180" lengthAdjust="spacing" fill="#C9A227">ROLL OF HONOUR</text>
+  <line x1="160" y1="196" x2="340" y2="196" stroke="#C9A227" stroke-width="1.5"></line>
+  <text x="160" y="224" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="13" fill="#C9A227">2026</text><text x="202" y="224" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="9" fill="#FFFFFF">MISSION HILLS</text><line x1="272" y1="224" x2="340" y2="224" stroke="#ffffff66" stroke-width="1" stroke-dasharray="2 3"></line><text x="306" y="233" text-anchor="middle" font-family="Helvetica, Arial" font-size="5.2" fill="#ffffff99">winner's name after the comp</text><text x="160" y="251" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="13" fill="#ffffff80">2027</text><line x1="200" y1="251" x2="340" y2="251" stroke="#ffffff66" stroke-width="1" stroke-dasharray="2 3"></line><text x="160" y="278" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="13" fill="#ffffff80">2028</text><line x1="200" y1="278" x2="340" y2="278" stroke="#ffffff66" stroke-width="1" stroke-dasharray="2 3"></line><text x="160" y="305" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="13" fill="#ffffff80">2029</text><line x1="200" y1="305" x2="340" y2="305" stroke="#ffffff66" stroke-width="1" stroke-dasharray="2 3"></line><text x="160" y="332" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="13" fill="#ffffff80">2030</text><line x1="200" y1="332" x2="340" y2="332" stroke="#ffffff66" stroke-width="1" stroke-dasharray="2 3"></line><text x="160" y="359" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="13" fill="#ffffff80">2031</text><line x1="200" y1="359" x2="340" y2="359" stroke="#ffffff66" stroke-width="1" stroke-dasharray="2 3"></line><text x="160" y="386" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="13" fill="#ffffff80">2032</text><line x1="200" y1="386" x2="340" y2="386" stroke="#ffffff66" stroke-width="1" stroke-dasharray="2 3"></line><text x="160" y="413" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="13" fill="#ffffff80">2033</text><line x1="200" y1="413" x2="340" y2="413" stroke="#ffffff66" stroke-width="1" stroke-dasharray="2 3"></line><text x="160" y="440" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="13" fill="#ffffff80">2034</text><line x1="200" y1="440" x2="340" y2="440" stroke="#ffffff66" stroke-width="1" stroke-dasharray="2 3"></line><text x="160" y="467" font-family="Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif" font-size="13" fill="#ffffff80">2035</text><line x1="200" y1="467" x2="340" y2="467" stroke="#ffffff66" stroke-width="1" stroke-dasharray="2 3"></line>
+</svg></div></div>
+  </div>
+
+  <h2>Your picks</h2>
+  <div class="ask">
+    <div id="picks" style="white-space:pre-line; font-weight:600">DLG jacket — my picks
+Crest: EST 2026 on top, the full slogan in the scroll
+Colours: Navy &amp; gold</div>
+    <textarea id="note" rows="3" placeholder="Anything else? (optional)" style="width:100%; margin-top:10px; font:inherit; padding:8px; border:1px solid #ecd98a; border-radius:8px"></textarea>
+    <div class="printbar" style="margin-top:10px"><button id="copy">Copy my picks</button><span class="note" id="copied">Then paste them into a text to Lachlan.</span></div>
+  </div>
+  <details style="margin-top:22px"><summary class="note" style="cursor:pointer">Notes for the embroiderer (for later)</summary><table id="spec" style="margin-top:8px"><tbody><tr><th>Jacket</th><td><b>One jacket</b>, passed from winner to winner (like the Masters green jacket). Navy pinstripe jacket (already chosen). Order a size the likely winners can all get into.</td></tr><tr><th>Front — left chest</th><td><b>The only crest on the jacket.</b> The club crest emblem — <b>100 mm wide</b>. Wearer's left chest, about 18–20 cm down from the shoulder seam, centred between the zip and the side seam. Wording: "EST ★ 2026" above the shield · DLG · INVITATIONAL · scroll reads "GOOD MATES · VITA BREVIS · BAD GOLF".</td></tr><tr><th>Back — banner</th><td>Ribbon reading <b>"GOOD MATES · VITA BREVIS · BAD GOLF"</b> — <b>400 mm wide</b>, centred across the top of the back, top edge about 6 cm below the collar seam. Same colours as the crest.</td></tr><tr><th>Back — roll of honour</th><td>No crest on the back. Directly under the banner: "ROLL OF HONOUR" heading (about 22 mm letters) with a gold rule under it, then one line per year: year · course · winner. Line letters about 15–18 mm high, block about 360 mm wide, centred. <b>Stitch now: "2026 · MISSION HILLS" only</b>, with a clear gap after it on the same line for the winner's name, which goes on after the comp (Fri 4 Dec 2026). Nothing else on the roll is stitched yet — the dotted lines on the mockup just show the room left for ten winners in all (to 2035). <b>The jacket comes back each year to have the new winner's line stitched on</b>, so keep the digitised file.</td></tr><tr><th>Thread colours</th><td>Gold · White (the shield and ribbon are navy, the same as the jacket) — flat fill, no gradients. Reference colours: gold #C9A227 · white · navy #1B2A41 to match the jacket. Match to the nearest stock thread.</td></tr><tr><th>Lettering</th><td>Copperplate-style capitals. INVITATIONAL is stretched to exactly the width of DLG above it. On the chest the small words (INVITATIONAL, EST 2026, VITA BREVIS) come out about 4–5 mm tall — <b>the full slogan in the scroll comes out about 2 mm, which most embroiderers can't stitch cleanly</b> — if that's too small for clean stitching, the chest crest can go up to 110 mm, or drop EST · 2026 from the chest version only.</td></tr><tr><th>Artwork</th><td>Vector files (SVG) of the crest, the banner and the roll of honour come with this sheet, for digitising.</td></tr></tbody></table></details>
+</div>
+
+<script>
+const T = { navy:'#1B2A41', gold:'#C9A227', red:'#B3282D', redDark:'#86191D', white:'#FFFFFF', green:'#2E6B3F' };
+const F = "Copperplate, 'Copperplate Gothic Bold', 'Big Caslon', Georgia, serif";
+const JACKET = { pinstripe:{c:'#1B2A41',e:'#0F1828',n:'Navy pinstripe',stripe:'#E6E8EC'}, green:{c:'#0F4D32',e:'#08301F',n:'Green'}, navy:{c:'#1B2A41',e:'#0F1828',n:'Navy'}, black:{c:'#17191D',e:'#050607',n:'Black'}, charcoal:{c:'#3A3F47',e:'#24282E',n:'Charcoal'} };
+// Crest colourways for the club crest and the banner. Each is three threads.
+const PAL = {
+  navygold:  { n:'Navy & gold', shield:T.navy, rib:T.navy, tail:'#0F1828', edge:T.gold, dlg:T.gold, inv:T.white, est:T.white, shaft:T.white, head:T.gold, ball:T.white, tee:T.gold, ribText:T.gold,
+               threads:'Gold · White (the shield and ribbon are navy, the same as the jacket)', why:'The blazer-badge look — same family as the Masters crest. Gold carries it, so it sits on the pinstripe without fighting it.' },
+  navysilver:{ n:'Navy & silver', shield:T.navy, rib:T.navy, tail:'#0F1828', edge:'#C3C8CF', dlg:T.white, inv:'#C3C8CF', est:T.gold, shaft:T.white, head:'#C3C8CF', ball:T.white, tee:T.gold, ribText:T.white,
+               threads:'Silver · White · a touch of Gold (navy shield and ribbon)', why:'Picks up a white or grey pinstripe. Quieter, very smart — but less punch from across the room.' },
+  lightgreen:{ n:'Light green & gold', shield:'#8DBF86', rib:'#8DBF86', tail:'#5E9157', edge:T.gold, dlg:T.navy, inv:T.navy, est:T.navy, shaft:T.white, head:T.gold, ball:T.white, tee:T.gold, ribText:T.navy,
+               threads:'Light green · Gold · Navy lettering · White', why:'Green and gold — and a nod to the Masters green. Gold won\'t show up on light green, so the lettering is navy to match the jacket. Brightest of the four; the most "golf day".' },
+  red:       { n:'Red & gold', shield:T.red, rib:T.red, tail:T.redDark, edge:T.gold, dlg:T.white, inv:T.gold, est:T.gold, shaft:T.white, head:T.gold, ball:T.white, tee:T.gold, ribText:T.white,
+               threads:'Gold · White · Red', why:'The loud one. Pops hardest, but red on navy pinstripe is a lot going on.' },
+};
+const pal = k => PAL[k || st.pal] || PAL.navygold;
+let uid = 0; const nid = () => 'p' + (++uid);
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+function star(cx, cy, r, fill){ let d=''; for (let i=0;i<10;i++){ const a=-Math.PI/2+i*Math.PI/5, rr=i%2?r*0.45:r; d+=(i?'L':'M')+(cx+rr*Math.cos(a)).toFixed(1)+','+(cy+rr*Math.sin(a)).toFixed(1); } return `<path d="${d}Z" fill="${fill}"/>`; }
+
+// A — club crest: shield, crossed clubs, DLG with INVITATIONAL stretched to its full width underneath.
+// scroll 'est' = "EST · 2026" moves down into the scroll; 'none' = no scroll, "EST · 2026" stays at the top of the shield.
+// 'motto' / 'mottoshort' (Founder 31-10): EST ★ 2026 above the shield, the trip slogan in the scroll — together they make the crest.
+function emblemA(scroll, pk){ scroll = scroll || st.scroll; const p=nid(), C=pal(pk), motto = scroll==='motto' || scroll==='mottoshort', est = scroll==='est' || motto;
+  const scrollTxt = scroll==='motto' ? MOTTOS[0].t : scroll==='mottoshort' ? 'VITA BREVIS' : 'EST · 2026';
+  const scrollFont = scroll==='motto' ? 'font-size="10.5" font-weight="700" textLength="204" lengthAdjust="spacingAndGlyphs"' : scroll==='mottoshort' ? 'font-size="19" font-weight="700" letter-spacing="2.5"' : 'font-size="19" letter-spacing="3"';
+  const dy = est ? -26 : 0;   // with the shield top free, the DLG block rides up to sit centred
+  return `<svg viewBox="0 0 300 ${est?360:298}" xmlns="http://www.w3.org/2000/svg">
+  <g stroke-linecap="round">
+    <line x1="70" y1="44" x2="226" y2="262" stroke="${C.shaft}" stroke-width="7"/>
+    <line x1="230" y1="44" x2="74" y2="262" stroke="${C.shaft}" stroke-width="7"/>
+    <line x1="70" y1="44" x2="86" y2="66" stroke="${C.head}" stroke-width="12"/>
+    <line x1="230" y1="44" x2="214" y2="66" stroke="${C.head}" stroke-width="12"/>
+  </g>
+  <path d="M220,256 L252,264 L248,280 L216,272 Z" fill="${C.head}"/>
+  <path d="M80,256 L48,264 L52,280 L84,272 Z" fill="${C.head}"/>
+  <path d="M80,62 H220 V170 C220,232 186,268 150,286 C114,268 80,232 80,170 Z" fill="${C.shield}" stroke="${C.edge}" stroke-width="7" stroke-linejoin="round"/>
+  ${star(150,34,11,C.edge)}
+  ${motto ? `<text x="134" y="40" text-anchor="end" font-family="${F}" font-weight="700" font-size="16" letter-spacing="2" fill="${C.edge}">EST</text><text x="166" y="40" font-family="${F}" font-weight="700" font-size="16" letter-spacing="2" fill="${C.edge}">2026</text>` : ''}
+  ${est ? '' : `<text x="150" y="98" text-anchor="middle" font-family="${F}" font-size="15" letter-spacing="3" fill="${C.est}">EST · 2026</text>`}
+  <text class="dlg" x="150" y="${170+dy}" text-anchor="middle" font-family="${F}" font-weight="700" font-size="54" fill="${C.dlg}">DLG</text>
+  <text class="fit" x="150" y="${195+dy}" text-anchor="middle" font-family="${F}" font-weight="700" font-size="14" textLength="112" lengthAdjust="spacing" fill="${C.inv}">INVITATIONAL</text>
+  <circle cx="150" cy="${218+dy}" r="10" fill="${C.ball}"/>
+  <path d="M143,${229+dy} H157 L152,${235+dy} V${252+dy} H148 V${235+dy} Z" fill="${C.tee}"/>
+  ${est ? `<path d="M40,304 L8,312 L22,326 L8,342 L40,336 Z" fill="${C.tail}" stroke="${C.edge}" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M260,304 L292,312 L278,326 L292,342 L260,336 Z" fill="${C.tail}" stroke="${C.edge}" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M36,300 Q150,330 264,300 L264,336 Q150,366 36,336 Z" fill="${C.rib}" stroke="${C.edge}" stroke-width="4" stroke-linejoin="round"/>
+  <path id="${p}" d="M46,326 Q150,356 254,326" fill="none"/>
+  <text font-family="${F}" ${scrollFont} fill="${C.ribText}"><textPath href="#${p}" startOffset="50%" text-anchor="middle">${esc(scrollTxt)}</textPath></text>` : ''}
+</svg>`; }
+// Stretch every INVITATIONAL to exactly the drawn width of the DLG above it (measured in the real font).
+function fitWords(){ document.querySelectorAll('svg').forEach(svg => { const d = svg.querySelector('text.dlg'), f = svg.querySelector('text.fit'); if (!d || !f) return;
+  try { const w = d.getBBox().width; if (w > 20) f.setAttribute('textLength', w.toFixed(1)); } catch(e) {} }); }
+
+// B — roundel: ring lettering, DLG in the middle, flag
+function emblemB(){ const a=nid(), b=nid(); return `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="150" cy="150" r="146" fill="${T.gold}"/>
+  <circle cx="150" cy="150" r="140" fill="${T.red}"/>
+  <circle cx="150" cy="150" r="100" fill="${T.navy}" stroke="${T.gold}" stroke-width="4"/>
+  <path id="${a}" d="M38,150 A112,112 0 0 1 262,150" fill="none"/>
+  <path id="${b}" d="M22,150 A128,128 0 0 0 278,150" fill="none"/>
+  <text font-family="${F}" font-size="19" letter-spacing="2" fill="${T.white}"><textPath href="#${a}" startOffset="50%" text-anchor="middle">THE INVITATIONAL</textPath></text>
+  <text font-family="${F}" font-size="18" letter-spacing="2" fill="${T.white}"><textPath href="#${b}" startOffset="50%" text-anchor="middle">MISSION HILLS · 2026</textPath></text>
+  ${star(30,150,9,T.gold)}${star(270,150,9,T.gold)}
+  <line x1="150" y1="66" x2="150" y2="112" stroke="${T.white}" stroke-width="3" stroke-linecap="round"/>
+  <path d="M152,66 L178,74 L152,82 Z" fill="${T.gold}"/>
+  <text x="150" y="172" text-anchor="middle" font-family="${F}" font-weight="700" font-size="60" letter-spacing="2" fill="${T.white}">DLG</text>
+  <line x1="108" y1="190" x2="192" y2="190" stroke="${T.gold}" stroke-width="3"/>
+  <circle cx="150" cy="210" r="8" fill="${T.white}"/>
+</svg>`; }
+
+// C — pin flag: DLG on the flag, ball by the cup
+function emblemC(){ return `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="110" cy="266" rx="96" ry="16" fill="${T.green}"/>
+  <ellipse cx="60" cy="266" rx="13" ry="4.5" fill="${T.navy}"/>
+  <circle cx="128" cy="258" r="8" fill="${T.white}"/>
+  <line x1="60" y1="22" x2="60" y2="264" stroke="${T.white}" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="60" cy="18" r="6" fill="${T.gold}"/>
+  <path d="M63,28 L282,84 L63,140 Z" fill="${T.red}" stroke="${T.gold}" stroke-width="5" stroke-linejoin="round"/>
+  <text x="130" y="100" text-anchor="middle" font-family="${F}" font-weight="700" font-size="44" fill="${T.white}">DLG</text>
+  <text x="190" y="196" text-anchor="middle" font-family="${F}" font-size="20" letter-spacing="1" fill="${T.gold}">INVITATIONAL</text>
+  <text x="190" y="224" text-anchor="middle" font-family="${F}" font-size="15" letter-spacing="3" fill="${T.white}">EST · 2026</text>
+</svg>`; }
+
+const EMBLEMS = [
+  { id:'A', name:'A · The club crest', make:()=>emblemA(), get ratio(){ return st.scroll==='none' ? 298/300 : 360/300; }, get threads(){ return pal().threads; }, why:'The proper golf-club look — shield, crossed clubs. Now with INVITATIONAL right across under DLG.' },
+  { id:'B', name:'B · The roundel', make:emblemB, ratio:1, threads:'Gold · White · Red (navy centre = the jacket)', why:'A round badge with the name in the ring. The easiest of the three to stitch cleanly, and it works at any size.' },
+  { id:'C', name:'C · The pin flag', make:emblemC, ratio:1, threads:'Red · Gold · White · Green', why:'A golf flag with DLG on it. The most playful — less blazer, more tour bag.' },
+];
+const MOTTOS = [
+  { t:'GOOD MATES · VITA BREVIS · BAD GOLF', kind:'clean', yours:true, why:'Chosen. "Vita brevis" is Latin for "life is short" — sat right in the middle of the mates and the golf.' },
+  { t:"LIFE'S SHORT. SO IS YOUR DRIVE.", kind:'clean', why:'Life is short — and so is everyone\'s drive. Works on anyone.' },
+  { t:'CARPE FAIRWAY', kind:'clean', why:'"Seize the fairway." Fake Latin for seize the day — short enough to go on the chest too.' },
+  { t:'MEMENTO MORI · FORE!', kind:'clean', why:'"Remember you will die" — then shout fore. Old-school crest motto with a punchline.' },
+  { t:'ONE DAY YOU WON\'T. TODAY YOU FKN GOLF.', kind:'spicy', why:'The whole message in one line: you won\'t always be able to, so play.' },
+  { t:'GOOD MATES · BAD GOLF · NO REGRETS', kind:'clean', why:'The trip, summed up.' },
+  { t:'HIT IT · FIND IT · DRINK IT · DIE HAPPY', kind:'clean', why:'A life plan in four steps.' },
+  { t:'PLAY WHILE YOU CAN STILL BEND OVER', kind:'clean', why:'For the hips and the backs. Tee it up while you still can.' },
+  { t:'VITA BREVIS · FKN TEE IT UP', kind:'spicy', why:'"Life is short" in Latin, then the instruction.' },
+];
+function ribbon(text, pk){ const p=nid(), C=pal(pk); const fs=Math.min(30, 430/(text.length*0.74)); const y=(68+fs*0.35).toFixed(1); return `<svg viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg">
+  <path d="M70,48 L14,58 L34,80 L14,104 L70,96 Z" fill="${C.tail}" stroke="${C.edge}" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M530,48 L586,58 L566,80 L586,104 L530,96 Z" fill="${C.tail}" stroke="${C.edge}" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M60,40 Q300,80 540,40 L540,96 Q300,136 60,96 Z" fill="${C.rib}" stroke="${C.edge}" stroke-width="4" stroke-linejoin="round"/>
+  <path id="${p}" d="M70,${y} Q300,${(+y+40).toFixed(1)} 530,${y}" fill="none"/>
+  <text font-family="${F}" font-size="${fs.toFixed(1)}" letter-spacing="1.5" fill="${C.ribText}"><textPath href="#${p}" startOffset="50%" text-anchor="middle">${esc(text)}</textPath></text>
+</svg>`; }
+// Banner above the chest crest (Founder 31-10 "maybe above the crest also"). At chest size the full line is too small to stitch, hence a short version.
+const CHEST = { none:{n:'Crest on its own', t:''}, short:{n:'"VITA BREVIS" above the crest', t:'VITA BREVIS'}, full:{n:'The full banner above the crest', t:null} };
+const chestText = k => { if (st.scroll==='motto' || st.scroll==='mottoshort') return ''; const c = CHEST[k || st.chest]; return c.t === null ? MOTTOS[st.motto].t : c.t; };
+function chestPatch(k){ const t = chestText(k); return `<svg viewBox="0 0 120 112" xmlns="http://www.w3.org/2000/svg">
+  ${t ? place(ribbon(t), 22, 6, 76, 19) : ''}${place(emblemA(), 35, t ? 28 : 18, 50, (50*EMBLEMS[0].ratio).toFixed(1))}
+</svg>`; }
+const place = (svg, x, y, w, h) => svg.replace('<svg ', `<svg x="${x}" y="${y}" width="${w}" height="${h}" `);
+
+// Jacket outlines (a simple zip jacket). Scale: chest 276 units across ≈ 56 cm → ~2 mm per unit.
+const BODY = 'M195,60 L130,78 L70,112 L28,330 L78,342 L108,210 L112,540 L388,540 L392,210 L422,342 L472,330 L430,112 L370,78 L305,60 Q250,88 195,60 Z';
+function jacketFront(st){ const J=JACKET[st.colour], E=EMBLEMS.find(e=>e.id===st.emblem); const w=50, h=w*E.ratio; return `<svg viewBox="0 0 500 560" xmlns="http://www.w3.org/2000/svg">
+  <path d="${BODY}" fill="${J.c}" stroke="${J.e}" stroke-width="3" stroke-linejoin="round"/>
+  ${J.stripe ? (()=>{ const q=nid(); return `<defs><pattern id="${q}" width="6" height="6" patternUnits="userSpaceOnUse"><line x1="3" y1="0" x2="3" y2="6" stroke="${J.stripe}" stroke-opacity=".32" stroke-width=".6"/></pattern></defs><path d="${BODY}" fill="url(#${q})"/>`; })() : ''}
+  <path d="M130,78 Q118,150 108,210 M370,78 Q382,150 392,210" fill="none" stroke="${J.e}" stroke-width="2"/>
+  <path d="M28,330 L78,342 M422,342 L472,330" stroke="${J.e}" stroke-width="6"/>
+  <rect x="112" y="524" width="276" height="16" fill="${J.e}" opacity=".55"/>
+  <path d="M195,60 Q250,88 305,60 L300,34 Q250,58 200,34 Z" fill="${J.c}" stroke="${J.e}" stroke-width="3" stroke-linejoin="round"/>
+  <line x1="250" y1="46" x2="250" y2="540" stroke="#C9CDD4" stroke-width="2"/>
+  <rect x="246" y="50" width="8" height="16" rx="2" fill="#C9CDD4"/>
+  ${E.id==='A' && chestText() ? place(ribbon(chestText()), 279, 106, 64, 16) : ''}
+  ${place(E.make(), 286, 128, w, h)}
+  <text x="311" y="${(134+h+16).toFixed(0)}" text-anchor="middle" font-family="Helvetica, Arial" font-size="9" fill="#ffffff99">left chest · 100 mm</text>
+</svg>`; }
+// Back = the banner across the top, then the roll of honour (Founder 31-10). One line per year, 2026 first, room for ten winners.
+function jacketBack(st){ const J=JACKET[st.colour]; const bW=200, bH=bW*150/600, bY=92, top=bY+bH+42, L=160, R=340; let rows='';
+  const years=[['2026','MISSION HILLS','']]; for (let y=2027; y<=2035; y++) years.push([String(y),'','']);
+  years.forEach((r,i)=>{ const yy=top+40+i*27, faint=i>0;
+    rows += `<text x="${L}" y="${yy}" font-family="${F}" font-size="13" fill="${faint?'#ffffff80':T.gold}">${r[0]}</text>`;
+    rows += faint ? `<line x1="${L+40}" y1="${yy}" x2="${R}" y2="${yy}" stroke="#ffffff66" stroke-width="1" stroke-dasharray="2 3"/>`
+                  : `<text x="${L+42}" y="${yy}" font-family="${F}" font-size="9" fill="${T.white}">${r[1]}</text><line x1="${L+112}" y1="${yy}" x2="${R}" y2="${yy}" stroke="#ffffff66" stroke-width="1" stroke-dasharray="2 3"/><text x="${(L+112+R)/2}" y="${yy+9}" text-anchor="middle" font-family="Helvetica, Arial" font-size="5.2" fill="#ffffff99">winner's name after the comp</text>`; });
+  return `<svg viewBox="0 0 500 560" xmlns="http://www.w3.org/2000/svg">
+  <path d="${BODY}" fill="${J.c}" stroke="${J.e}" stroke-width="3" stroke-linejoin="round"/>
+  ${J.stripe ? (()=>{ const q=nid(); return `<defs><pattern id="${q}" width="6" height="6" patternUnits="userSpaceOnUse"><line x1="3" y1="0" x2="3" y2="6" stroke="${J.stripe}" stroke-opacity=".32" stroke-width=".6"/></pattern></defs><path d="${BODY}" fill="url(#${q})"/>`; })() : ''}
+  <path d="M130,78 Q118,150 108,210 M370,78 Q382,150 392,210" fill="none" stroke="${J.e}" stroke-width="2"/>
+  <path d="M28,330 L78,342 M422,342 L472,330" stroke="${J.e}" stroke-width="6"/>
+  <rect x="112" y="524" width="276" height="16" fill="${J.e}" opacity=".55"/>
+  <path d="M195,60 Q250,70 305,60 L300,36 Q250,48 200,36 Z" fill="${J.c}" stroke="${J.e}" stroke-width="3" stroke-linejoin="round"/>
+  ${place(ribbon(MOTTOS[st.motto].t), 250-bW/2, bY, bW, bH.toFixed(1))}
+  <text x="250" y="${top}" text-anchor="middle" font-family="${F}" font-weight="700" font-size="15" textLength="${R-L}" lengthAdjust="spacing" fill="${T.gold}">ROLL OF HONOUR</text>
+  <line x1="${L}" y1="${top+12}" x2="${R}" y2="${top+12}" stroke="${T.gold}" stroke-width="1.5"/>
+  ${rows}
+</svg>`; }
+
+let st = { emblem:'A', motto:0, colour:'pinstripe', scroll:'motto', pal:'navygold', chest:'short' };
+try { Object.assign(st, JSON.parse(localStorage.getItem('dlg-jacket-picks')||'{}')); } catch(e) {}
+function save(){ try { localStorage.setItem('dlg-jacket-picks', JSON.stringify(st)); } catch(e) {} }
+
+function render(){
+  document.getElementById('emblems').innerHTML = EMBLEMS.map(e => `<div class="card ${st.emblem===e.id?'on':''}" data-e="${e.id}">
+    <div class="swatch">${e.make()}</div><div class="label">${e.name}</div><div class="note">${e.why}</div><div class="note"><b>Threads:</b> ${e.threads}</div></div>`).join('');
+  document.getElementById('scrolls').innerHTML = st.emblem!=='A' ? '' : `<h3 class="mini">1 · The crest — what goes above the shield and on the scroll</h3><div class="grid4">` + [
+    ['motto', 'EST 2026 on top, the slogan in the scroll', 'Lachlan\'s idea — the date above the shield, the trip slogan in the scroll, and that is the crest. But at chest size (100 mm) the slogan letters come out about 2 mm tall: too small to stitch cleanly.'],
+    ['mottoshort', 'Same, with VITA BREVIS in the scroll', 'Lachlan\'s idea, made stitchable — the two words that matter, letters about 4–5 mm on the chest. The full slogan stays across the back.'],
+    ['est', 'Scroll with EST · 2026 in it', 'The traditional crest — the date in the scroll.'],
+    ['none', 'No scroll', 'Cleaner and a bit shorter. EST · 2026 stays at the top of the shield.']
+  ].map(o => `<div class="card ${st.scroll===o[0]?'on':''}" data-s="${o[0]}"><div class="swatch small">${emblemA(o[0])}</div><div class="label">${o[1]}${o[0]==='motto'?'<span class="tag star">Lachlan\'s idea</span>':''}</div><div class="note">${o[2]}</div></div>`).join('') + '</div>';
+  document.getElementById('pals').innerHTML = st.emblem!=='A' ? '' : `<h3 class="mini">2 · The crest colours, on the navy pinstripe</h3><div class="grid4">` +
+    Object.entries(PAL).map(([k,c]) => `<div class="card ${st.pal===k?'on':''}" data-p="${k}"><div class="swatch small stripe">${emblemA(null,k)}</div><div class="swatch small stripe rib">${ribbon(MOTTOS[st.motto].t,k)}</div>
+      <div class="label">${c.n}</div><div class="note">${c.why}</div><div class="note"><b>Threads:</b> ${c.threads}</div></div>`).join('') + '</div>';
+  document.getElementById('chest').innerHTML = (st.emblem!=='A' || st.scroll==='motto' || st.scroll==='mottoshort') ? '' : `<h3 class="mini">3 · A small banner above the chest crest too? (the banner is on the back either way)</h3><div class="grid3">` +
+    Object.entries(CHEST).map(([k,c]) => `<div class="card ${st.chest===k?'on':''}" data-ch="${k}"><div class="swatch small stripe">${chestPatch(k)}</div><div class="label">${c.n}</div><div class="note">${
+      ({none:'Cleanest. The crest says it all and the back carries the banner.',
+        short:'The two words that matter, big enough to stitch — letters about 5 mm. Life is short, right over your heart.',
+        full:'The whole line — but at chest size the letters come out about 2–3 mm, too small for most embroiderers to stitch cleanly.'})[k]}</div></div>`).join('') + '</div>';
+  document.getElementById('mottos').innerHTML = MOTTOS.map((m,i) => `<div class="card motto ${st.motto===i?'on':''}" data-m="${i}">
+    <div class="swatch">${ribbon(m.t)}</div>
+    <div class="label">${i+1} · ${esc(m.t)}${m.yours?'<span class="tag star">chosen</span>':''}<span class="tag ${m.kind}">${m.kind}</span></div><div class="note">${esc(m.why)}</div></div>`).join('');
+  document.getElementById('colours').innerHTML = 'Jacket colour: ' + Object.entries(JACKET).map(([k,v]) => `<button class="${st.colour===k?'on':''}" data-c="${k}"><span class="dot" style="background:${v.c}"></span>${v.n}</button>`).join('');
+  document.getElementById('front').innerHTML = jacketFront(st);
+  document.getElementById('back').innerHTML = jacketBack(st);
+  const E = EMBLEMS.find(e=>e.id===st.emblem), M = MOTTOS[st.motto];
+  document.getElementById('spec').innerHTML = [
+    ['Jacket', `<b>One jacket</b>, passed from winner to winner (like the Masters green jacket). ${JACKET[st.colour].n} jacket (already chosen). Order a size the likely winners can all get into.`],
+    ['Front — left chest', `<b>The only crest on the jacket.</b> ${E.name.replace(/^. · The /,'The ').replace(/^./,c=>c.toUpperCase())} emblem — <b>100 mm wide</b>. Wearer's left chest, about 18–20 cm down from the shoulder seam, centred between the zip and the side seam.${E.id==='A' ? ' Wording: ' + ({motto:'"EST ★ 2026" above the shield · DLG · INVITATIONAL · scroll reads "' + esc(MOTTOS[0].t) + '".', mottoshort:'"EST ★ 2026" above the shield · DLG · INVITATIONAL · scroll reads "VITA BREVIS".', est:'DLG · INVITATIONAL · scroll reads "EST · 2026".', none:'"EST · 2026" · DLG · INVITATIONAL, no scroll.'})[st.scroll] : ''}${E.id==='A' && chestText() ? ` Just above it, a small ribbon reading <b>"${esc(chestText())}"</b> — <b>120 mm wide</b>, same colours, centred over the crest.` : ''}`],
+    ['Back — banner', `Ribbon reading <b>"${esc(M.t)}"</b> — <b>400 mm wide</b>, centred across the top of the back, top edge about 6 cm below the collar seam. Same colours as the crest.`],
+    ['Back — roll of honour', `No crest on the back. Directly under the banner: "ROLL OF HONOUR" heading (about 22 mm letters) with a gold rule under it, then one line per year: year · course · winner. Line letters about 15–18 mm high, block about 360 mm wide, centred. <b>Stitch now: \"2026 · MISSION HILLS\" only</b>, with a clear gap after it on the same line for the winner's name, which goes on after the comp (Fri 4 Dec 2026). Nothing else on the roll is stitched yet — the dotted lines on the mockup just show the room left for ten winners in all (to 2035). <b>The jacket comes back each year to have the new winner's line stitched on</b>, so keep the digitised file.`],
+    ['Thread colours', `${E.threads} — flat fill, no gradients. Reference colours: ${E.id==='A' ? ({navygold:'gold #C9A227 · white · navy #1B2A41 to match the jacket', navysilver:'silver #C3C8CF · white · gold #C9A227 · navy #1B2A41 to match the jacket', lightgreen:'light green #8DBF86 · gold #C9A227 · navy #1B2A41 · white', red:'gold #C9A227 · red #B3282D · white'})[st.pal] : 'gold #C9A227 · red #B3282D · white' + (E.id==='C'?' · green #2E6B3F':'')}. Match to the nearest stock thread.`],
+    ['Lettering', `Copperplate-style capitals. INVITATIONAL is stretched to exactly the width of DLG above it. On the chest the small words (INVITATIONAL, EST 2026, VITA BREVIS) come out about 4–5 mm tall${st.scroll==='motto' ? ' — <b>the full slogan in the scroll comes out about 2 mm, which most embroiderers can\'t stitch cleanly</b>' : ''} — if that's too small for clean stitching, the chest crest can go up to 110 mm, or drop EST · 2026 from the chest version only.`],
+    ['Artwork', 'Vector files (SVG) of the crest, the banner and the roll of honour come with this sheet, for digitising.'],
+  ].map(r => `<tr><th>${r[0]}</th><td>${r[1]}</td></tr>`).join('');
+  const SC = {motto:'EST 2026 on top, the full slogan in the scroll', mottoshort:'EST 2026 on top, VITA BREVIS in the scroll', est:'EST · 2026 in the scroll', none:'No scroll'};
+  const chestLine = (st.scroll==='motto' || st.scroll==='mottoshort') ? '' : '\nSmall banner above the chest crest: ' + CHEST[st.chest].n;
+  document.getElementById('picks').textContent = 'DLG jacket — my picks\nCrest: ' + SC[st.scroll] + '\nColours: ' + PAL[st.pal].n + chestLine;
+  fitWords();
+}
+function picksText(){ const n = document.getElementById('note').value.trim(); return document.getElementById('picks').textContent + (n ? '\n' + n : ''); }
+document.getElementById('copy').addEventListener('click', async () => { const t = picksText(), msg = document.getElementById('copied');
+  try { await navigator.clipboard.writeText(t); msg.textContent = 'Copied — now paste it into a text to Lachlan.'; }
+  catch(e) { const ta = document.getElementById('note'); const old = ta.value; ta.value = t; ta.select(); try { document.execCommand('copy'); msg.textContent = 'Copied — now paste it into a text to Lachlan.'; } catch(_) { msg.textContent = 'Select the text above and copy it.'; } ta.value = old; } });
+document.addEventListener('click', ev => {
+  const e = ev.target.closest('[data-e]'), m = ev.target.closest('[data-m]'), c = ev.target.closest('[data-c]'), sc = ev.target.closest('[data-s]');
+  const pp = ev.target.closest('[data-p]'), ch = ev.target.closest('[data-ch]');
+  if (ch) st.chest = ch.dataset.ch; else if (pp) st.pal = pp.dataset.p; else if (e) st.emblem = e.dataset.e; else if (m) st.motto = +m.dataset.m; else if (c) st.colour = c.dataset.c; else if (sc) st.scroll = sc.dataset.s; else return;
+  save(); render();
+});
+render();
+</script>
+
+
+</body></html>
